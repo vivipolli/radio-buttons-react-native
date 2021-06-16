@@ -101,9 +101,9 @@ class RadioButtonRN extends React.Component {
     fadeInAnimation = () => {
         // this.fadeAnim.setValue(0)
         Animated.timing(this.state.fadeAnim, {
-          toValue: 0,
-          duration: 0,
-          useNativeDriver: true,
+            toValue: 0,
+            duration: 0,
+            useNativeDriver: true,
         }).start(() => {
             Animated.timing(this.state.fadeAnim, {
                 toValue: 1,
@@ -114,75 +114,74 @@ class RadioButtonRN extends React.Component {
         });
     }
 
-	render() {
-		let { activeIndex, fadeAnim, animations } = this.state;
+    render() {
+        let { activeIndex, fadeAnim, animations } = this.state;
         let { boxStyle, style, circleSize, textStyle, data, icon, activeColor, deactiveColor, boxActiveBgColor, boxDeactiveBgColor, box, textColor } = this.props;
 
-		return (
+        return (
             <View style={style}>
-            {
-                data.map((item, index) => {
-                    return (
-                        <TouchableOpacity
-                            key={index}
-                            style={[ box ? styles.productBox : styles.productBoxLess, 
+                {
+                    data.map((item, index) => {
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                style={[box ? styles.productBox : styles.productBoxLess,
                                 box && {
                                     backgroundColor: activeIndex === index ? boxActiveBgColor : boxDeactiveBgColor,
                                     borderColor: activeIndex === index ? activeColor : deactiveColor,
                                 }
-                            , boxStyle]}
-                            activeOpacity={0.9}
-                            onPress={() => this._changeRadio(item, index)}
-                        >
-                            <View style={styles.leftProductBox}>
-                                <View style={[ icon ? styles.icon : styles.circle, {
-                                    borderColor: activeIndex === index ? activeColor : deactiveColor,
-                                    width: circleSize + 8,
-                                    height: circleSize + 8
-                                },
-                                icon && {
-                                    borderColor: activeIndex === index ? 'transparent' : deactiveColor
-                                }
-                                ]}>
-                                    <Animated.View style={{
-                                        opacity: activeIndex === index ? fadeAnim : 0,
-                                    }}>   
-                                        <Animated.View
-                                            style={{
-                                                transform: animations
-                                            }}
-                                        >
-                                            {
-                                                icon ? 
-                                                    icon
-                                                :
-                                                    <View style={[styles.circleFill, {
-                                                        backgroundColor: activeIndex === index ? activeColor : deactiveColor,
-                                                        borderColor: activeIndex === index ? activeColor : deactiveColor,
-                                                        width: circleSize,
-                                                        height: circleSize
-                                                    }]} />
-                                            }
+                                    , boxStyle]}
+                                activeOpacity={0.9}
+                                onPress={() => this._changeRadio(item, index)}
+                            >
+                                <View style={styles.leftProductBox}>
+                                    <View style={[icon ? styles.icon : styles.circle, {
+                                        borderColor: activeIndex === index ? activeColor : deactiveColor,
+                                        width: circleSize + 8,
+                                        height: circleSize + 8
+                                    },
+                                    icon && {
+                                        borderColor: activeIndex === index ? 'transparent' : deactiveColor
+                                    }
+                                    ]}>
+                                        <Animated.View style={{
+                                            opacity: activeIndex === index ? fadeAnim : 0,
+                                        }}>
+                                            <Animated.View
+                                                style={{
+                                                    transform: animations
+                                                }}
+                                            >
+                                                {
+                                                    icon ?
+                                                        icon
+                                                        :
+                                                        <View style={[styles.circleFill, {
+                                                            backgroundColor: activeIndex === index ? activeColor : deactiveColor,
+                                                            borderColor: activeIndex === index ? activeColor : deactiveColor,
+                                                            width: circleSize,
+                                                            height: circleSize
+                                                        }]} />
+                                                }
+                                            </Animated.View>
                                         </Animated.View>
-                                    </Animated.View>
+                                    </View>
+                                    <View style={[styles.centerProductBox]}>
+                                        <Text style={[{
+                                            color: textColor
+                                        }, textStyle]}>
+                                            {item.label}
+                                        </Text>
+                                    </View>
                                 </View>
-                            </View>
-
-                            <View style={[styles.centerProductBox]}>
-                                <Text style={[{
-                                    color: textColor
-                                }, textStyle]}>
-                                    {item.label}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    )
-                })
-            }
+                            </TouchableOpacity>
+                        )
+                    })
+                }
             </View>
-		);
+        );
     }
-    
+
 }
 
 /* Styles ====================================== */
@@ -200,15 +199,12 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     leftProductBox: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexDirection: 'row'
     },
     centerProductBox: {
-        flex: 6,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        paddingHorizontal:4
+        paddingHorizontal: 4
     },
     circle: {
         borderWidth: 1,
@@ -230,9 +226,9 @@ const styles = StyleSheet.create({
 
 /* Props ======================================= */
 RadioButtonRN.propTypes = {
-	style: PropTypes.object,
-	boxStyle: PropTypes.object,
-	textStyle: PropTypes.object,
+    style: PropTypes.object,
+    boxStyle: PropTypes.object,
+    textStyle: PropTypes.object,
     initial: PropTypes.number,
     circleSize: PropTypes.number,
     duration: PropTypes.number,
@@ -250,15 +246,15 @@ RadioButtonRN.propTypes = {
 };
 
 RadioButtonRN.defaultProps = {
-	style: {},
-	boxStyle: {},
-	textStyle: {},
+    style: {},
+    boxStyle: {},
+    textStyle: {},
     initial: -1,
     circleSize: 18,
     duration: 500,
     data: [],
     animationTypes: [],
-    selectedBtn: () => {},
+    selectedBtn: () => { },
     activeColor: '#03a9f4',
     deactiveColor: '#e2e2e2',
     boxActiveBgColor: '#e1f5fe33',
